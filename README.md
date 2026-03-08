@@ -1,76 +1,34 @@
-## RILT-Starter (REACT INERTIA LARVEL TAILWIND)
-Project ini merupakan sebuah starter-kit atau project base dengan spesifikasi sebagai berikut:
+## CRM Lead-to-Invoice (Laravel + Inertia + React)
+Project ini telah diarahkan dari starter-kit menjadi fondasi aplikasi **CRM Sales & Marketing** untuk alur:
 
-TECH :
-- Larvel 11
+**Lead → Opportunity → Quotation (+ Approval) → Sales/Service Order → Fulfillment → Invoice → Payment/Complaint/Feedback**.
+
+## Teknologi
+- Laravel 11
 - Inertia.js
-- React.Js
-- Tailwind Css
+- React.js
+- Tailwind CSS
+- Spatie Roles & Permissions
 
-FITUR :
-- Theme Switcher (Dark & Light)
-- Bulk Delete Data
-- Responsive Design
-- Navigation by Roles & Permissions
-- SPA (Single Page Application)
+## Cakupan Implementasi Saat Ini
+Implementasi pada commit ini fokus pada **struktur database dan model inti** agar siap dikembangkan bertahap:
+- Master data CRM (company, branch, customer, produk/jasa, tax, dll)
+- CRM operasional (lead, activities polymorphic, opportunity)
+- Penawaran & approval
+- Order barang dan jasa + fulfillment
+- Billing (invoice + payment)
+- Quality & control (complaint, feedback, attachment, reminder, audit log, document numbering)
+- Penguatan tabel users untuk kebutuhan operasional sales/marketing
 
-## INSTALASI PROJECT
+## Instalasi
+1. Clone repository.
+2. Copy `.env.example` jadi `.env` lalu konfigurasi database.
+3. Jalankan `composer install`.
+4. Jalankan `php artisan key:generate`.
+5. Jalankan `npm install`.
+6. Jalankan migration: `php artisan migrate`.
+7. Jalankan aplikasi: `php artisan serve` dan `npm run dev`.
 
-Pastikan `git` sudah terinstall, kemudian jalankan semua perintah dibawah ini :
-```
-1. clone repository
-2. copy .env.example rename menjadi .env kemudian atur database di .env
-3. composer install
-4. php artisan key:generate
-5. npm install 
-6. npm run dev (pastikan selalu dijalankan diterminal)
-7. php artisan migrate --seed
-8. php artisan serve (pastikan selalu dijalankan diterminal)
-```
-
-## AKUN SEEDER
-
-```
-email : raf@dev.com
-password : password
-```
-
-## OVERVIEW APLIKASI
-<table>
-  <tr>
-        <td> 
-            <img src="https://imgur.com/lGLU18q.png" alt="dashboard-light">
-        </td>
-        <td> 
-            <img src="https://imgur.com/0iD1Cna.png" alt="dashboard-dark">
-        </td>
-   </tr>
-    <tr>    
-        <td>
-            <img src="https://imgur.com/k7YXFL7.png" alt="sidebar-light-close">
-        </td>
-        <td>
-            <img src="https://imgur.com/GFD8QwI.png" alt="sidebar-dropdown-link-light">
-        </td>
-    </tr>
-   <tr>
-        <td>
-             <img src="https://imgur.com/YPWeFco.png" alt="mobile-light-modal">
-        </td>
-        <td> 
-            <img src="https://imgur.com/yRBmDxZ.png" alt="mobile-light-sidebar">
-        </td>
-   </tr>    
-   <tr>
-       <td>
-           <img src="https://imgur.com/4QEzppS.png" alt="notification-dark">
-       </td>
-        <td>
-           <img src="https://imgur.com/mJ7dXu4.png" alt="mobile-notification-dark">
-       </td>
-   </tr>
-</table>
-
-
-## LISENSI
-Aplikasi ini bersifat open source dapat digunakan oleh siapa pun dengan syarat tidak untuk di perjual belikan.
+## Catatan
+- Relasi Eloquent inti sudah disiapkan untuk `Customer`, `Lead`, `Opportunity`, `Quotation`, dan `Invoice`.
+- Struktur migration disusun modular untuk memudahkan pengembangan fase MVP lanjutan.
