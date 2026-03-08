@@ -34,7 +34,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('source_lead_id')->nullable();
             $table->unsignedBigInteger('converted_from_lead_id')->nullable();
-            $table->foreignId('owner_user_id')->nullable()->constrained('users')->nullOnDelete()->index();
+            $table->foreignId('owner_user_id')->nullable()->index()->constrained('users')->nullOnDelete();
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
@@ -86,7 +86,7 @@ return new class extends Migration
                 ->on('lead_sources')
                 ->nullOnDelete();
             $table->foreignId('sales_area_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('assigned_to')->nullable()->constrained('users')->nullOnDelete()->index();
+            $table->foreignId('assigned_to')->nullable()->index()->constrained('users')->nullOnDelete();
             $table->string('name');
             $table->string('company_name')->nullable();
             $table->enum('lead_type', ['company', 'individual'])->default('company');
@@ -136,10 +136,10 @@ return new class extends Migration
         Schema::create('opportunities', function (Blueprint $table) {
             $table->id();
             $table->string('opportunity_no')->unique();
-            $table->foreignId('lead_id')->nullable()->constrained()->nullOnDelete()->index();
-            $table->foreignId('customer_id')->nullable()->constrained()->nullOnDelete()->index();
+            $table->foreignId('lead_id')->nullable()->index()->constrained()->nullOnDelete();
+            $table->foreignId('customer_id')->nullable()->index()->constrained()->nullOnDelete();
             $table->foreignId('customer_contact_id')->nullable()->constrained('customer_contacts')->nullOnDelete();
-            $table->foreignId('assigned_to')->nullable()->constrained('users')->nullOnDelete()->index();
+            $table->foreignId('assigned_to')->nullable()->index()->constrained('users')->nullOnDelete();
             $table->foreignId('sales_area_id')->nullable()->constrained()->nullOnDelete();
             $table->string('title');
             $table->text('description')->nullable();

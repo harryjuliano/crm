@@ -14,8 +14,8 @@ return new class extends Migration
             $table->integer('revision_no')->default(0);
             $table->foreignId('company_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('branch_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('opportunity_id')->nullable()->constrained()->nullOnDelete()->index();
-            $table->foreignId('customer_id')->constrained()->restrictOnDelete()->index();
+            $table->foreignId('opportunity_id')->nullable()->index()->constrained()->nullOnDelete();
+            $table->foreignId('customer_id')->index()->constrained()->restrictOnDelete();
             $table->foreignId('customer_contact_id')->nullable()->constrained('customer_contacts')->nullOnDelete();
             $table->foreignId('billing_address_id')->nullable()->constrained('customer_addresses')->nullOnDelete();
             $table->foreignId('shipping_address_id')->nullable()->constrained('customer_addresses')->nullOnDelete();
@@ -110,8 +110,8 @@ return new class extends Migration
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->id();
             $table->string('sales_order_no')->unique();
-            $table->foreignId('quotation_id')->nullable()->constrained()->nullOnDelete()->index();
-            $table->foreignId('customer_id')->constrained()->restrictOnDelete()->index();
+            $table->foreignId('quotation_id')->nullable()->index()->constrained()->nullOnDelete();
+            $table->foreignId('customer_id')->index()->constrained()->restrictOnDelete();
             $table->foreignId('customer_contact_id')->nullable()->constrained('customer_contacts')->nullOnDelete();
             $table->foreignId('billing_address_id')->nullable()->constrained('customer_addresses')->nullOnDelete();
             $table->foreignId('shipping_address_id')->nullable()->constrained('customer_addresses')->nullOnDelete();
@@ -156,8 +156,8 @@ return new class extends Migration
         Schema::create('service_orders', function (Blueprint $table) {
             $table->id();
             $table->string('service_order_no')->unique();
-            $table->foreignId('quotation_id')->nullable()->constrained()->nullOnDelete()->index();
-            $table->foreignId('customer_id')->constrained()->restrictOnDelete()->index();
+            $table->foreignId('quotation_id')->nullable()->index()->constrained()->nullOnDelete();
+            $table->foreignId('customer_id')->index()->constrained()->restrictOnDelete();
             $table->foreignId('customer_contact_id')->nullable()->constrained('customer_contacts')->nullOnDelete();
             $table->foreignId('service_address_id')->nullable()->constrained('customer_addresses')->nullOnDelete();
             $table->date('order_date');
@@ -256,7 +256,7 @@ return new class extends Migration
             $table->foreignId('sales_order_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('service_order_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('quotation_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('customer_id')->constrained()->restrictOnDelete()->index();
+            $table->foreignId('customer_id')->index()->constrained()->restrictOnDelete();
             $table->foreignId('customer_contact_id')->nullable()->constrained('customer_contacts')->nullOnDelete();
             $table->foreignId('billing_address_id')->nullable()->constrained('customer_addresses')->nullOnDelete();
             $table->date('invoice_date');

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
             $table->string('complaint_no')->unique();
-            $table->foreignId('customer_id')->constrained()->restrictOnDelete()->index();
+            $table->foreignId('customer_id')->index()->constrained()->restrictOnDelete();
             $table->foreignId('customer_contact_id')->nullable()->constrained('customer_contacts')->nullOnDelete();
             $table->foreignId('invoice_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('sales_order_id')->nullable()->constrained()->nullOnDelete();
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->text('root_cause')->nullable();
             $table->text('corrective_action')->nullable();
             $table->text('preventive_action')->nullable();
-            $table->foreignId('assigned_to')->nullable()->constrained('users')->nullOnDelete()->index();
+            $table->foreignId('assigned_to')->nullable()->index()->constrained('users')->nullOnDelete();
             $table->date('due_date')->nullable();
             $table->enum('status', ['open', 'investigating', 'action_in_progress', 'resolved', 'closed', 'cancelled'])->default('open')->index();
             $table->timestamp('resolved_at')->nullable();
