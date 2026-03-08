@@ -52,6 +52,34 @@ import React from 'react';
 
 export default function Menu() {
     const { url } = usePage();
+    const defaultDashboardHref = '/apps/dashboard';
+    const availableMenuPrefixes = [
+        '/apps/dashboard',
+        '/apps/permissions',
+        '/apps/roles',
+        '/apps/users',
+        '/apps/customers',
+        '/apps/customer-contacts',
+        '/apps/lead-sources',
+        '/apps/leads',
+        '/apps/activities',
+        '/apps/opportunities',
+        '/apps/opportunity-items',
+    ];
+
+    const isAvailablePath = (href) => availableMenuPrefixes.some((prefix) => href === prefix || href.startsWith(`${prefix}/`));
+    const getSafeHref = (href) => (isAvailablePath(href) ? href : defaultDashboardHref);
+    const isItemActive = (href) => {
+        if (href === '/apps/roles') {
+            return url.startsWith('/apps/roles') || url.startsWith('/apps/permissions');
+        }
+
+        if (!isAvailablePath(href)) {
+            return false;
+        }
+
+        return url.startsWith(href);
+    };
 
     const menuNavigation = [
         {
@@ -176,5 +204,12 @@ export default function Menu() {
         },
     ];
 
-    return menuNavigation;
+    return menuNavigation.map((section) => ({
+        ...section,
+        details: section.details.map((detail) => ({
+            ...detail,
+            href: getSafeHref(detail.href),
+            active: isItemActive(detail.href),
+        })),
+    }));
 }
