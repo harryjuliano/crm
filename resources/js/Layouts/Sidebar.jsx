@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import Menu from "@/Utils/Menu"
 import LinkItem from "@/Components/LinkItem";
 import LinkItemDropdown from "@/Components/LinkItemDropdown";
 import { usePage } from "@inertiajs/react";
-import { IconBrandReact } from "@tabler/icons-react";
+import { IconBrandReact, IconChevronDown, IconChevronRight } from "@tabler/icons-react";
 import { clsx } from "clsx";
 export default function Sidebar({ sidebarOpen }) {
 
@@ -12,6 +12,18 @@ export default function Sidebar({ sidebarOpen }) {
 
     // get menu from utils
     const menuNavigation = Menu();
+    const defaultExpandedSections = useMemo(
+        () => Object.fromEntries(menuNavigation.map((item) => [item.title, item.details.some((detail) => detail.active)])),
+        [menuNavigation],
+    );
+    const [expandedSections, setExpandedSections] = useState(defaultExpandedSections);
+
+    const handleToggleSection = (title) => {
+        setExpandedSections((previous) => ({
+            ...previous,
+            [title]: !previous[title],
+        }));
+    };
 
     return (
         <div
@@ -41,11 +53,16 @@ export default function Sidebar({ sidebarOpen }) {
                         {menuNavigation.map((item, index) => (
                             <div key={index}>
                                 {item.permissions &&
-                                    <div className="text-gray-500 text-xs py-3 px-4 font-bold uppercase">
-                                        {item.title}
-                                    </div>
+                                    <button
+                                        className="w-full flex items-center justify-between text-gray-500 text-xs py-3 px-4 font-bold uppercase hover:text-gray-700 dark:hover:text-gray-300"
+                                        onClick={() => handleToggleSection(item.title)}
+                                        type="button"
+                                    >
+                                        <span>{item.title}</span>
+                                        {expandedSections[item.title] ? <IconChevronDown size={14} /> : <IconChevronRight size={14} />}
+                                    </button>
                                 }
-                                {item.details.map((detail, indexDetail) => (
+                                {expandedSections[item.title] && item.details.map((detail, indexDetail) => (
                                     detail.hasOwnProperty('subdetails') ?
                                         <LinkItemDropdown
                                             key={indexDetail}
