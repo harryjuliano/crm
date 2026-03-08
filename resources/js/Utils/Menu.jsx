@@ -1,125 +1,180 @@
 import { usePage } from '@inertiajs/react';
-import { IconAddressBook, IconCirclePlus, IconLayout2, IconListDetails, IconTable, IconUserBolt, IconUserShield, IconUsers } from '@tabler/icons-react';
+import {
+    IconActivity,
+    IconAddressBook,
+    IconAlertCircle,
+    IconArchive,
+    IconBell,
+    IconBriefcase,
+    IconBuilding,
+    IconBuildingFactory,
+    IconBuildingStore,
+    IconCategory,
+    IconChartBar,
+    IconChartLine,
+    IconChecklist,
+    IconClipboardCheck,
+    IconClipboardList,
+    IconCoin,
+    IconDatabase,
+    IconFileDescription,
+    IconFileInvoice,
+    IconFileReport,
+    IconGitBranch,
+    IconHistory,
+    IconInvoice,
+    IconLayout2,
+    IconListCheck,
+    IconListDetails,
+    IconMapPin,
+    IconMessageReport,
+    IconNotebook,
+    IconPackage,
+    IconPaperclip,
+    IconReceipt,
+    IconReceiptTax,
+    IconReportSearch,
+    IconRoute,
+    IconScale,
+    IconSearch,
+    IconSettings,
+    IconTruckDelivery,
+    IconUserBolt,
+    IconUserCheck,
+    IconUserShield,
+    IconUsers,
+    IconUsersGroup,
+    IconWorld,
+    IconTool,
+} from '@tabler/icons-react';
 import hasAnyPermission from './Permissions';
-import React from 'react'
+import React from 'react';
 
 export default function Menu() {
-
-    // define use page
     const { url } = usePage();
 
-    // define menu navigations
     const menuNavigation = [
         {
-            title: 'Overview',
-            permissions: hasAnyPermission(['dashboard-access']),
-            details: [
-                {
-                    title : 'Dashboard',
-                    href : '/apps/dashboard',
-                    active: url.startsWith('/apps/dashboard') ? true : false,
-                    icon : <IconLayout2 size={20} strokeWidth={1.5}/>,
-                    permissions:  hasAnyPermission(['dashboard-access']),
-                },
-            ]
-        },
-        {
-            title: 'User Management',
-            permissions: hasAnyPermission(['permissions-access']) || hasAnyPermission(['roles-access']) || hasAnyPermission(['users-access']),
-            details : [
-                {
-                    title : 'Hak Akses',
-                    href : '/apps/permissions',
-                    active: url.startsWith('/apps/permissions') ? true : false,
-                    icon : <IconUserBolt size={20} strokeWidth={1.5}/>,
-                    permissions: hasAnyPermission(['permissions-access']),
-                },
-                {
-                    title : 'Akses Group',
-                    href : '/apps/roles',
-                    active: url.startsWith('/apps/roles') ? true : false,
-                    icon : <IconUserShield size={20} strokeWidth={1.5}/>,
-                    permissions:  hasAnyPermission(['roles-access']),
-                },
-                {
-                    title : 'Pengguna',
-                    icon : <IconUsers size={20} strokeWidth={1.5}/>,
-                    permissions: hasAnyPermission(['users-access']),
-                    subdetails: [
-                        {
-                            title: 'Data Pengguna',
-                            href: '/apps/users',
-                            icon: <IconTable size={20} strokeWidth={1.5}/>,
-                            active: url === '/apps/users' ? true : false,
-                            permissions: hasAnyPermission(['users-data']),
-                        },
-                        {
-                            title: 'Tambah Data Pengguna',
-                            href: '/apps/users/create',
-                            icon: <IconCirclePlus size={20} strokeWidth={1.5}/>,
-                            active: url === '/apps/users/create' ? true : false,
-                            permissions: hasAnyPermission(['users-create']),
-                        },
-                    ]
-                }
-            ]
-        },
-        {
-            title: 'CRM MVP 1',
+            title: 'Dashboard',
             permissions: true,
             details: [
                 {
-                    title: 'Customers',
-                    href: '/apps/customers',
-                    active: url.startsWith('/apps/customers'),
-                    icon: <IconUsers size={20} strokeWidth={1.5}/>,
-                    permissions: true,
+                    title: 'Dashboard Utama',
+                    href: '/apps/dashboard',
+                    active: url.startsWith('/apps/dashboard'),
+                    icon: <IconLayout2 size={20} strokeWidth={1.5} />,
+                    permissions: hasAnyPermission(['dashboard-access']),
                 },
-                {
-                    title: 'Customer Contacts',
-                    href: '/apps/customer-contacts',
-                    active: url.startsWith('/apps/customer-contacts'),
-                    icon: <IconAddressBook size={20} strokeWidth={1.5}/>,
-                    permissions: true,
-                },
-                {
-                    title: 'Lead Sources',
-                    href: '/apps/lead-sources',
-                    active: url.startsWith('/apps/lead-sources'),
-                    icon: <IconListDetails size={20} strokeWidth={1.5}/>,
-                    permissions: true,
-                },
-                {
-                    title: 'Leads',
-                    href: '/apps/leads',
-                    active: url.startsWith('/apps/leads'),
-                    icon: <IconTable size={20} strokeWidth={1.5}/>,
-                    permissions: true,
-                },
-                {
-                    title: 'Activities',
-                    href: '/apps/activities',
-                    active: url.startsWith('/apps/activities'),
-                    icon: <IconTable size={20} strokeWidth={1.5}/>,
-                    permissions: true,
-                },
-                {
-                    title: 'Opportunities',
-                    href: '/apps/opportunities',
-                    active: url.startsWith('/apps/opportunities'),
-                    icon: <IconTable size={20} strokeWidth={1.5}/>,
-                    permissions: true,
-                },
-                {
-                    title: 'Opportunity Items',
-                    href: '/apps/opportunity-items',
-                    active: url.startsWith('/apps/opportunity-items'),
-                    icon: <IconTable size={20} strokeWidth={1.5}/>,
-                    permissions: true,
-                },
+                { title: 'Dashboard Marketing', href: '/apps/dashboards/marketing', active: url.startsWith('/apps/dashboards/marketing'), icon: <IconChartLine size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Dashboard Sales', href: '/apps/dashboards/sales', active: url.startsWith('/apps/dashboards/sales'), icon: <IconBriefcase size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Dashboard Invoice', href: '/apps/dashboards/invoice', active: url.startsWith('/apps/dashboards/invoice'), icon: <IconInvoice size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Dashboard Quality', href: '/apps/dashboards/quality', active: url.startsWith('/apps/dashboards/quality'), icon: <IconClipboardCheck size={20} strokeWidth={1.5} />, permissions: true },
             ],
-        }
-    ]
+        },
+        {
+            title: 'CRM',
+            permissions: true,
+            details: [
+                { title: 'Leads', href: '/apps/leads', active: url.startsWith('/apps/leads'), icon: <IconSearch size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Activities', href: '/apps/activities', active: url.startsWith('/apps/activities'), icon: <IconActivity size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Opportunities', href: '/apps/opportunities', active: url.startsWith('/apps/opportunities'), icon: <IconRoute size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Customers', href: '/apps/customers', active: url.startsWith('/apps/customers'), icon: <IconUsers size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Contacts', href: '/apps/customer-contacts', active: url.startsWith('/apps/customer-contacts'), icon: <IconAddressBook size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+        {
+            title: 'Penawaran',
+            permissions: true,
+            details: [
+                { title: 'Quotations', href: '/apps/quotations', active: url.startsWith('/apps/quotations'), icon: <IconFileDescription size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Approval Quotation', href: '/apps/quotations/approval', active: url.startsWith('/apps/quotations/approval'), icon: <IconUserCheck size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Revision History', href: '/apps/quotations/revisions', active: url.startsWith('/apps/quotations/revisions'), icon: <IconHistory size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+        {
+            title: 'Order & Fulfillment',
+            permissions: true,
+            details: [
+                { title: 'Sales Orders', href: '/apps/sales-orders', active: url.startsWith('/apps/sales-orders'), icon: <IconChecklist size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Service Orders', href: '/apps/service-orders', active: url.startsWith('/apps/service-orders'), icon: <IconTool size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Deliveries', href: '/apps/deliveries', active: url.startsWith('/apps/deliveries'), icon: <IconTruckDelivery size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Service Reports', href: '/apps/service-reports', active: url.startsWith('/apps/service-reports'), icon: <IconReportSearch size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+        {
+            title: 'Billing',
+            permissions: true,
+            details: [
+                { title: 'Invoices', href: '/apps/invoices', active: url.startsWith('/apps/invoices'), icon: <IconFileInvoice size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Payments', href: '/apps/payments', active: url.startsWith('/apps/payments'), icon: <IconCoin size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Aging Receivable', href: '/apps/aging-receivable', active: url.startsWith('/apps/aging-receivable'), icon: <IconReceipt size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+        {
+            title: 'Quality',
+            permissions: true,
+            details: [
+                { title: 'Complaints', href: '/apps/complaints', active: url.startsWith('/apps/complaints'), icon: <IconAlertCircle size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Complaint Actions', href: '/apps/complaint-actions', active: url.startsWith('/apps/complaint-actions'), icon: <IconListCheck size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Customer Feedback', href: '/apps/customer-feedback', active: url.startsWith('/apps/customer-feedback'), icon: <IconMessageReport size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+        {
+            title: 'Reports',
+            permissions: true,
+            details: [
+                { title: 'Lead Report', href: '/apps/reports/leads', active: url.startsWith('/apps/reports/leads'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Activity Report', href: '/apps/reports/activities', active: url.startsWith('/apps/reports/activities'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Opportunity Pipeline', href: '/apps/reports/opportunity-pipeline', active: url.startsWith('/apps/reports/opportunity-pipeline'), icon: <IconGitBranch size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Quotation Report', href: '/apps/reports/quotations', active: url.startsWith('/apps/reports/quotations'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Sales Order Report', href: '/apps/reports/sales-orders', active: url.startsWith('/apps/reports/sales-orders'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Service Order Report', href: '/apps/reports/service-orders', active: url.startsWith('/apps/reports/service-orders'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Delivery Report', href: '/apps/reports/deliveries', active: url.startsWith('/apps/reports/deliveries'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Invoice Report', href: '/apps/reports/invoices', active: url.startsWith('/apps/reports/invoices'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Outstanding Invoice', href: '/apps/reports/outstanding-invoices', active: url.startsWith('/apps/reports/outstanding-invoices'), icon: <IconReceipt size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Complaint Report', href: '/apps/reports/complaints', active: url.startsWith('/apps/reports/complaints'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Customer Feedback Report', href: '/apps/reports/customer-feedback', active: url.startsWith('/apps/reports/customer-feedback'), icon: <IconFileReport size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'KPI Marketing', href: '/apps/reports/kpi-marketing', active: url.startsWith('/apps/reports/kpi-marketing'), icon: <IconChartBar size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+        {
+            title: 'Master Data',
+            permissions: true,
+            details: [
+                { title: 'Companies', href: '/apps/master-data/companies', active: url.startsWith('/apps/master-data/companies'), icon: <IconBuilding size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Branches', href: '/apps/master-data/branches', active: url.startsWith('/apps/master-data/branches'), icon: <IconBuildingStore size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Sales Areas', href: '/apps/master-data/sales-areas', active: url.startsWith('/apps/master-data/sales-areas'), icon: <IconMapPin size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Customer Groups', href: '/apps/master-data/customer-groups', active: url.startsWith('/apps/master-data/customer-groups'), icon: <IconUsersGroup size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Industries', href: '/apps/master-data/industries', active: url.startsWith('/apps/master-data/industries'), icon: <IconBuildingFactory size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Lead Sources', href: '/apps/lead-sources', active: url.startsWith('/apps/lead-sources'), icon: <IconListDetails size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Customers Master', href: '/apps/customers', active: url.startsWith('/apps/customers'), icon: <IconUsers size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Customer Contacts Master', href: '/apps/customer-contacts', active: url.startsWith('/apps/customer-contacts'), icon: <IconAddressBook size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Customer Addresses Master', href: '/apps/master-data/customer-addresses', active: url.startsWith('/apps/master-data/customer-addresses'), icon: <IconWorld size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Product Categories', href: '/apps/master-data/product-categories', active: url.startsWith('/apps/master-data/product-categories'), icon: <IconCategory size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Products', href: '/apps/master-data/products', active: url.startsWith('/apps/master-data/products'), icon: <IconPackage size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Service Categories', href: '/apps/master-data/service-categories', active: url.startsWith('/apps/master-data/service-categories'), icon: <IconCategory size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Services', href: '/apps/master-data/services', active: url.startsWith('/apps/master-data/services'), icon: <IconNotebook size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Units', href: '/apps/master-data/units', active: url.startsWith('/apps/master-data/units'), icon: <IconScale size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Tax Codes', href: '/apps/master-data/tax-codes', active: url.startsWith('/apps/master-data/tax-codes'), icon: <IconReceiptTax size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Price Lists', href: '/apps/master-data/price-lists', active: url.startsWith('/apps/master-data/price-lists'), icon: <IconClipboardList size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Document Numbering', href: '/apps/master-data/document-numbering', active: url.startsWith('/apps/master-data/document-numbering'), icon: <IconListDetails size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+        {
+            title: 'Administration',
+            permissions: true,
+            details: [
+                { title: 'Users', href: '/apps/users', active: url.startsWith('/apps/users'), icon: <IconUsers size={20} strokeWidth={1.5} />, permissions: hasAnyPermission(['users-access']) },
+                { title: 'Roles & Permissions', href: '/apps/roles', active: url.startsWith('/apps/roles') || url.startsWith('/apps/permissions'), icon: <IconUserShield size={20} strokeWidth={1.5} />, permissions: hasAnyPermission(['roles-access']) || hasAnyPermission(['permissions-access']) },
+                { title: 'Approval Workflow', href: '/apps/approval-workflow', active: url.startsWith('/apps/approval-workflow'), icon: <IconUserBolt size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Activity Logs', href: '/apps/activity-logs', active: url.startsWith('/apps/activity-logs'), icon: <IconArchive size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Audit Logs', href: '/apps/audit-logs', active: url.startsWith('/apps/audit-logs'), icon: <IconDatabase size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Attachments', href: '/apps/attachments', active: url.startsWith('/apps/attachments'), icon: <IconPaperclip size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'Reminders', href: '/apps/reminders', active: url.startsWith('/apps/reminders'), icon: <IconBell size={20} strokeWidth={1.5} />, permissions: true },
+                { title: 'System Settings', href: '/apps/system-settings', active: url.startsWith('/apps/system-settings'), icon: <IconSettings size={20} strokeWidth={1.5} />, permissions: true },
+            ],
+        },
+    ];
 
     return menuNavigation;
 }
