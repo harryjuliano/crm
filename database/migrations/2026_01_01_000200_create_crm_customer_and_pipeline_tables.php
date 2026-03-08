@@ -80,7 +80,11 @@ return new class extends Migration
             $table->string('lead_no')->unique();
             $table->foreignId('company_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('branch_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('lead_source_id')->nullable()->constrained()->nullOnDelete()->index();
+            $table->unsignedBigInteger('lead_source_id')->nullable()->index();
+            $table->foreign('lead_source_id', 'fk_leads_lead_source_id')
+                ->references('id')
+                ->on('lead_sources')
+                ->nullOnDelete();
             $table->foreignId('sales_area_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('assigned_to')->nullable()->constrained('users')->nullOnDelete()->index();
             $table->string('name');
