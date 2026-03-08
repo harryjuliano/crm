@@ -1,5 +1,5 @@
 import { usePage } from '@inertiajs/react';
-import { IconCirclePlus, IconLayout2, IconTable, IconUserBolt, IconUserShield, IconUsers } from '@tabler/icons-react';
+import { IconAddressBook, IconCirclePlus, IconLayout2, IconListDetails, IconTable, IconUserBolt, IconUserShield, IconUsers } from '@tabler/icons-react';
 import hasAnyPermission from './Permissions';
 import React from 'react'
 
@@ -63,6 +63,61 @@ export default function Menu() {
                     ]
                 }
             ]
+        },
+        {
+            title: 'CRM MVP 1',
+            permissions: true,
+            details: [
+                {
+                    title: 'Customers',
+                    href: '/apps/customers',
+                    active: url.startsWith('/apps/customers'),
+                    icon: <IconUsers size={20} strokeWidth={1.5}/>,
+                    permissions: true,
+                },
+                {
+                    title: 'Customer Contacts',
+                    href: '/apps/customer-contacts',
+                    active: url.startsWith('/apps/customer-contacts'),
+                    icon: <IconAddressBook size={20} strokeWidth={1.5}/>,
+                    permissions: true,
+                },
+                {
+                    title: 'Lead Sources',
+                    href: '/apps/lead-sources',
+                    active: url.startsWith('/apps/lead-sources'),
+                    icon: <IconListDetails size={20} strokeWidth={1.5}/>,
+                    permissions: true,
+                },
+                {
+                    title: 'Leads',
+                    href: '/apps/leads',
+                    active: url.startsWith('/apps/leads'),
+                    icon: <IconTable size={20} strokeWidth={1.5}/>,
+                    permissions: true,
+                },
+                {
+                    title: 'Activities',
+                    href: '/apps/activities',
+                    active: url.startsWith('/apps/activities'),
+                    icon: <IconTable size={20} strokeWidth={1.5}/>,
+                    permissions: true,
+                },
+                {
+                    title: 'Opportunities',
+                    href: '/apps/opportunities',
+                    active: url.startsWith('/apps/opportunities'),
+                    icon: <IconTable size={20} strokeWidth={1.5}/>,
+                    permissions: true,
+                },
+                {
+                    title: 'Opportunity Items',
+                    href: '/apps/opportunity-items',
+                    active: url.startsWith('/apps/opportunity-items'),
+                    icon: <IconTable size={20} strokeWidth={1.5}/>,
+                    permissions: true,
+                },
+            ],
         }
     ]
 

@@ -32,4 +32,10 @@ class Opportunity extends Model
     {
         return $this->hasMany(Quotation::class);
     }
+
+    public function assignee(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
 }
+
