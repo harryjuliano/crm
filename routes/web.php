@@ -1,6 +1,13 @@
 <?php
 
 use App\Http\Controllers\Apps\DashboardController;
+use App\Http\Controllers\Apps\ActivityController;
+use App\Http\Controllers\Apps\CustomerContactController;
+use App\Http\Controllers\Apps\CustomerController;
+use App\Http\Controllers\Apps\LeadController;
+use App\Http\Controllers\Apps\LeadSourceController;
+use App\Http\Controllers\Apps\OpportunityController;
+use App\Http\Controllers\Apps\OpportunityItemController;
 use App\Http\Controllers\Apps\PermissionController;
 use App\Http\Controllers\Apps\RoleController;
 use App\Http\Controllers\Apps\UserController;
@@ -33,6 +40,13 @@ Route::group(['prefix' => 'apps', 'as' => 'apps.' , 'middleware' => ['auth']], f
     Route::resource('/roles', RoleController::class)->except(['create', 'edit', 'show']);
     // users route
     Route::resource('/users', UserController::class)->except('show');
+    Route::resource('/customers', CustomerController::class)->except('show');
+    Route::resource('/customer-contacts', CustomerContactController::class)->except('show');
+    Route::resource('/lead-sources', LeadSourceController::class)->except('show');
+    Route::resource('/leads', LeadController::class)->except('show');
+    Route::resource('/activities', ActivityController::class)->except('show');
+    Route::resource('/opportunities', OpportunityController::class)->except('show');
+    Route::resource('/opportunity-items', OpportunityItemController::class)->except('show');
 });
 
 require __DIR__.'/auth.php';
